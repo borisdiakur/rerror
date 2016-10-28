@@ -1,0 +1,31 @@
+{
+  "name": "rerror",
+  "version": "1.0.0",
+  "description": "rich error",
+  "main": "./rerror",
+  "scripts": {
+    "test": "npm run eslint ; mocha test",
+    "eslint": "eslint .",
+    "mocha": "mocha --reporter min test",
+    "istanbul": "rm -rf coverage && istanbul cover ./node_modules/mocha/bin/_mocha --report html ; open coverage/rerror/rerror.js.html",
+    "coveralls": "rm -rf coverage && istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+  },
+  "repository": "borisdiakur/rerror",
+  "keywords": "error, rich, exception, verror, cause",
+  "author": "Boris Diakur <contact@borisdiakur.com> (https://github.com/borisdiakur)",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "coveralls": "^2.11.14",
+    "eslint": "^3.8.1",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.3.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.1.2",
+    "mocha-lcov-reporter": "1.2.0"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  }
+}
