@@ -1,0 +1,24 @@
+{
+  "name": "rerror",
+  "description": "rich error",
+  "main": "./rerror",
+  "authors": [
+    "Boris Diakur <contact@borisdiakur.com> (https://github.com/borisdiakur)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "error",
+    "rich",
+    "exception",
+    "verror",
+    "cause"
+  ],
+  "homepage": "https://github.com/borisdiakur/rerror",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
