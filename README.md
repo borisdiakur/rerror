@@ -1,4 +1,4 @@
-# <center>(ノಠ益ಠ)ノﾐ ɹoɹɹǝɹ</center>
+# (ノಠ益ಠ)ノﾐ ɹoɹɹǝɹ
 
 [![Build Status](https://travis-ci.org/borisdiakur/rerror.svg?branch=master)](https://travis-ci.org/borisdiakur/rerror)
 [![Coverage Status](https://coveralls.io/repos/borisdiakur/rerror/badge.svg?branch=master)](https://coveralls.io/r/borisdiakur/rerror?branch=master)
@@ -90,22 +90,22 @@ Error
 
 ## API
 
-### rerror.RError ⇐ <code>Error</code>
+### rerror.RError ⇐ `Error`
 **Kind**: static class
-**Extends:** <code>Error</code>  
+**Extends:** `Error`
 
 #### new RError(options)
 Creates a rich error object
 
 **Throws**:
 
-- <code>RError</code> Throws a rich error with name INVALID_ARGS, if invalid arguments are provided
+- `RError` Throws a rich error with name INVALID_ARGS, if invalid arguments are provided
 
 | Param | Type | Description |
 | --- | --- | --- |
-| options | <code>Object</code> | Required, must consists of the following properties:<br> - {String} name<br> - {String} [message]<br> - {Error} [cause] |
+| options | `Object` | Required, must consists of the following properties:<br> - {String} name<br> - {String} [message]<br> - {Error} [cause] |
 
-**Example**  
+**Example**
 ```js
 .catch(err => {
   throw new RError({
@@ -118,42 +118,29 @@ Creates a rich error object
 
 ### Methods
 
-#### RError.hasCause(name) ⇒ <code>boolean</code>
+#### hasCause(name) ⇒ `boolean`
 Checks if a certain cause is in the cause chain of the error.
 
-**Kind**: instance method of <code>[RError](#rerror.RError)</code>  
-**Access:** public  
+**Kind**: instance method of `[RError](#rerror.RError)`
+**Access:** public
 
 | Param | Type | Description |
 | --- | --- | --- |
-| name | <code>string</code> | The cause name to be searched for in the cause chain |
+| name | `string` | The cause name to be searched for in the cause chain |
 
-<a name="rerror.RError+toJSON"></a>
-
-#### RError.toJSON() ⇒ <code>Object</code>
+#### toJSON() ⇒ `Object`
 The value returned by the toJSON method will be used for serialization when using JSON.stringify.
 
-**Kind**: instance method of <code>[RError](#rerror.RError)</code>  
-**Access:** public<br>
-**Returns:** <code>{ name: string, message: string, why: string, stacks: string }</code>
+**Returns:** `{ name: string, message: string, why: string, stacks: string }`
 
 ### Properties
 
-#### RError.stack : <code>string</code>
-Getter returning the stack of the top most error in the chain
-
-**Kind**: instance typedef of <code>[RError](#rerror.RError)</code>  
-
-#### RError.why : <code>string</code>
+#### why : `string`
 Getter returning a human readable cause chain, e.g. FOO: I failed <- BAR: I messed up
 
-**Kind**: instance typedef of <code>[RError](#rerror.RError)</code>  
-
-#### RError.stacks : <code>string</code>
+#### stacks : `string`
 Getter returning a stack of stacks using the cause chain
-
-**Kind**: instance typedef of <code>[RError](#rerror.RError)</code>  
 
 ___
 
-<center>Enjoy!</center>
+Enjoy!
