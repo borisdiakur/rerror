@@ -23,6 +23,16 @@ In the browser:
 <script type="text/javascript" src="rerror.js"></script>
 ```
 
+![IE](https://badges.herokuapp.com/browsers?iexplore=-7,!8,9,10,11,edge)
+![Firefox](https://badges.herokuapp.com/browsers?firefox=4.0)
+![Google Chrome](https://badges.herokuapp.com/browsers?googlechrome=5)
+![Safari](https://badges.herokuapp.com/browsers?safari=5.1)
+![Opera](https://badges.herokuapp.com/browsers?opera=11.60)
+
+![Android](https://badges.herokuapp.com/browsers?android=yes)
+![iPhone](https://badges.herokuapp.com/browsers?iphone=yes)
+![iPad](https://badges.herokuapp.com/browsers?ipad=yes)
+
 ## Usage
 
 Once required or loaded in the browser, the `RError` constructor is available via the global scope, ([`global`](https://nodejs.org/api/globals.html#globals_global) in Node.js respectively [`window`](https://developer.mozilla.org/en-US/docs/Web/API/Window) in the browser), just like `Error`.
