@@ -9,6 +9,8 @@
 The utility module rerror provides the `RError` constructor, which you can use instead of `Error`. It allows throwing and handling “rich errors” in Node.js and the browser.
 The main strength of a “rich error” is its ability to provide deeply nested however simply consumable information about the cause of failure without significant impact on performance.
 
+__Try it in your browser__: https://runkit.com/borisdiakur/rerror
+
 ## Installation
 
 Node.js:
