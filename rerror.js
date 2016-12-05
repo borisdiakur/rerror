@@ -79,7 +79,7 @@ if (typeof RError !== 'undefined') {
     this._err = new Error()
 
     // create an iterable chain
-    this.chain = this.cause ? [this].concat(this.cause.chain) : [this]
+    this.chain = this.cause && Array.isArray(this.cause.chain) ? [this].concat(this.cause.chain) : [this]
   }
 
   RError.prototype = Object.create(Error.prototype, {
