@@ -1,4 +1,8 @@
-### 1.0.1 (2016-10-28)
+### 1.0.2 (2016-12-06)
+
+* fix: chain was missing an error
+
+### 1.0.1 (2016-12-05)
 
 * fix: chain contains undefined
 
