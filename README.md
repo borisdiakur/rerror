@@ -1,4 +1,4 @@
-# <center>(ノಠ益ಠ)ノﾐ ɹoɹɹǝɹ</center>
+# (ノಠ益ಠ)ノﾐ ɹoɹɹǝɹ
 
 [![Build Status](https://travis-ci.org/borisdiakur/rerror.svg?branch=master)](https://travis-ci.org/borisdiakur/rerror)
 [![Coverage Status](https://coveralls.io/repos/borisdiakur/rerror/badge.svg?branch=master)](https://coveralls.io/r/borisdiakur/rerror?branch=master)
@@ -8,6 +8,8 @@
 
 The utility module rerror provides the `RError` constructor, which you can use instead of `Error`. It allows throwing and handling “rich errors” in Node.js and the browser.
 The main strength of a “rich error” is its ability to provide deeply nested however simply consumable information about the cause of failure without significant impact on performance.
+
+__Try it in your browser__: https://runkit.com/borisdiakur/rerror
 
 ## Installation
 
@@ -22,6 +24,16 @@ In the browser:
 ```html
 <script type="text/javascript" src="rerror.js"></script>
 ```
+
+![IE](https://badges.herokuapp.com/browsers?iexplore=-7,!8,9,10,11,edge)
+![Firefox](https://badges.herokuapp.com/browsers?firefox=4.0)
+![Google Chrome](https://badges.herokuapp.com/browsers?googlechrome=5)
+![Safari](https://badges.herokuapp.com/browsers?safari=5.1)
+![Opera](https://badges.herokuapp.com/browsers?opera=11.60)
+
+![Android](https://badges.herokuapp.com/browsers?android=yes)
+![iPhone](https://badges.herokuapp.com/browsers?iphone=yes)
+![iPad](https://badges.herokuapp.com/browsers?ipad=yes)
 
 ## Usage
 
@@ -90,20 +102,20 @@ Error
 
 ## API
 
-### rerror.RError ⇐ <code>Error</code>
+### rerror.RError ⇐ `Error`
 **Kind**: static class
-**Extends:** <code>Error</code>  
+**Extends:** `Error`
 
 #### new RError(options)
 Creates a rich error object
 
 **Throws**:
 
-- <code>RError</code> Throws a rich error with name INVALID_ARGS, if invalid arguments are provided
+- `RError` Throws a rich error with name INVALID_ARGS, if invalid arguments are provided
 
 | Param | Type | Description |
 | --- | --- | --- |
-| options | <code>Object</code> | Required, must consists of the following properties:<br> - {String} name<br> - {String} [message]<br> - {Error} [cause] |
+| options | `Object` | Required, must consists of the following properties:<br> - {String} name<br> - {String} [message]<br> - {Error} [cause] |
 
 **Example with cause**  
 ```js
@@ -123,42 +135,29 @@ throw new RError('BAR')
 
 ### Methods
 
-#### RError.hasCause(name) ⇒ <code>boolean</code>
+#### hasCause(name) ⇒ `boolean`
 Checks if a certain cause is in the cause chain of the error.
 
-**Kind**: instance method of <code>[RError](#rerror.RError)</code>  
-**Access:** public  
+**Kind**: instance method of `[RError](#rerror.RError)`
+**Access:** public
 
 | Param | Type | Description |
 | --- | --- | --- |
-| name | <code>string</code> | The cause name to be searched for in the cause chain |
+| name | `string` | The cause name to be searched for in the cause chain |
 
-<a name="rerror.RError+toJSON"></a>
-
-#### RError.toJSON() ⇒ <code>Object</code>
+#### toJSON() ⇒ `Object`
 The value returned by the toJSON method will be used for serialization when using JSON.stringify.
 
-**Kind**: instance method of <code>[RError](#rerror.RError)</code>  
-**Access:** public<br>
-**Returns:** <code>{ name: string, message: string, why: string, stacks: string }</code>
+**Returns:** `{ name: string, message: string, why: string, stacks: string }`
 
 ### Properties
 
-#### RError.stack : <code>string</code>
-Getter returning the stack of the top most error in the chain
-
-**Kind**: instance typedef of <code>[RError](#rerror.RError)</code>  
-
-#### RError.why : <code>string</code>
+#### why : `string`
 Getter returning a human readable cause chain, e.g. FOO: I failed <- BAR: I messed up
 
-**Kind**: instance typedef of <code>[RError](#rerror.RError)</code>  
-
-#### RError.stacks : <code>string</code>
+#### stacks : `string`
 Getter returning a stack of stacks using the cause chain
-
-**Kind**: instance typedef of <code>[RError](#rerror.RError)</code>  
 
 ___
 
-<center>Enjoy!</center>
+Enjoy!

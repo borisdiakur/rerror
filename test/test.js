@@ -157,14 +157,24 @@ describe('constructor parameter checks', function () {
 describe('usage', function () {
   it('should work', function () {
     function fail () {
-      throw new RError({
-        name: 'BAR'
-      })
+      throw new Error()
     }
 
     function failFurther () {
       try {
         fail()
+      } catch (err) {
+        throw new RError({
+          name: 'BAR',
+          message: 'Something else went wrong',
+          cause: err
+        })
+      }
+    }
+
+    function failEvenFurther () {
+      try {
+        failFurther()
       } catch (err) {
         throw new RError({
           name: 'FOO',
@@ -175,15 +185,17 @@ describe('usage', function () {
     }
 
     try {
-      failFurther()
+      failEvenFurther()
     } catch (e) {
-      var firstFailSpot = 'test/test.js:160:13'
-      var secondFailSpot = 'test/test.js:169:15'
-      assert.equal(e.why, 'FOO: Something went wrong <- BAR')
-      assert.ok(e.stack.split('\n')[1].indexOf(secondFailSpot) !== -1, 'expected stack to point to the right spot')
-      assert.ok(e.cause.stack.split('\n')[1].indexOf(firstFailSpot) !== -1, 'expected cause stack to point to the right spot')
+      var firstFailSpot = 'test/test.js:152:13'
+      var secondFailSpot = 'test/test.js:159:15'
+      var thirdFailSpot = 'test/test.js:171:15'
+      assert.equal(e.why, 'FOO: Something went wrong <- BAR: Something else went wrong <- Error')
+      assert.ok(e.stack.split('\n')[1].indexOf(thirdFailSpot) !== -1, 'expected stack to point to the right spot')
+      assert.ok(e.cause.stack.split('\n')[1].indexOf(secondFailSpot) !== -1, 'expected stack to point to the right spot')
+      assert.ok(e.cause.cause.stack.split('\n')[1].indexOf(firstFailSpot) !== -1, 'expected cause stack to point to the right spot')
       assert.ok(Array.isArray(e.chain), 'expected cause chain to be an array')
-      assert.equal(e.chain.length, 2)
+      assert.equal(e.chain.length, 3)
       assert.equal(e.chain[0], e)
       assert.equal(e.chain[1], e.cause)
       assert.ok(e.stacks.indexOf(firstFailSpot) !== -1, 'expected stack to include first fail spot')
@@ -196,7 +208,8 @@ describe('usage', function () {
       assert.equal(e.stacks, parsed.stacks)
       assert.ok(e.hasCause('FOO') === true)
       assert.ok(e.hasCause('BAR') === true)
-      assert.ok(e.hasCause('QUX') === false)
+      assert.ok(e.hasCause('Error') === true)
+      assert.ok(e.hasCause('QUZ') === false)
       assert.equal(e.toString(), 'FOO: Something went wrong')
     }
   })
