@@ -13,8 +13,8 @@ if (typeof RError !== 'undefined') {
 (function () {
   /**
    * Creates a rich error object
-   * @param {{name: string, message: string, cause: error}} options
-   * Required, must consists of the following properties:<br>
+   * @param {(string|{name: string, message: string, cause: error})} options
+   * Required, must be either the error name or an object containing the following properties:<br>
    * - {String} name<br>
    * - {String} [message]<br>
    * - {Error} [cause]
@@ -33,47 +33,51 @@ if (typeof RError !== 'undefined') {
    */
   function RError (options) {
     // check args
-    if (typeof options !== 'object') {
-      throw new RError({
-        name: 'INVALID_ARGS',
-        message: 'expected required options parameter of type object'
-      })
+    if (typeof options === 'string') {
+      // set properties
+      this.name = options
+    } else {
+      if (typeof options !== 'object') {
+        throw new RError({
+          name: 'INVALID_ARGS',
+          message: 'expected required options parameter of type object'
+        })
+      }
+      if (typeof options.name !== 'string') {
+        throw new RError({
+          name: 'INVALID_ARGS',
+          message: 'expected required option name of type string'
+        })
+      }
+      if (!options.name.trim().length) {
+        throw new RError({
+          name: 'INVALID_ARGS',
+          message: 'expected required option name to consist of something other than whitespace'
+        })
+      }
+      if (typeof options.message !== 'undefined' && typeof options.message !== 'string') {
+        throw new RError({
+          name: 'INVALID_ARGS',
+          message: 'expected optional option message to be either undefined or of type string'
+        })
+      }
+      if (typeof options.message === 'string' && !options.message.trim().length) {
+        throw new RError({
+          name: 'INVALID_ARGS',
+          message: 'expected optional option message to consist of something other than whitespace'
+        })
+      }
+      if (!(typeof options.cause === 'undefined' || options.cause instanceof Error)) {
+        throw new RError({
+          name: 'INVALID_ARGS',
+          message: 'expected optional option cause to be either undefined of an instance of Error'
+        })
+      }
+      // set properties
+      this.name = options.name
+      this.message = options.message
+      this.cause = options.cause
     }
-    if (typeof options.name !== 'string') {
-      throw new RError({
-        name: 'INVALID_ARGS',
-        message: 'expected required option name of type string'
-      })
-    }
-    if (!options.name.trim().length) {
-      throw new RError({
-        name: 'INVALID_ARGS',
-        message: 'expected required option name to consist of something other than whitespace'
-      })
-    }
-    if (typeof options.message !== 'undefined' && typeof options.message !== 'string') {
-      throw new RError({
-        name: 'INVALID_ARGS',
-        message: 'expected optional option message to be either undefined or of type string'
-      })
-    }
-    if (typeof options.message === 'string' && !options.message.trim().length) {
-      throw new RError({
-        name: 'INVALID_ARGS',
-        message: 'expected optional option message to consist of something other than whitespace'
-      })
-    }
-    if (!(typeof options.cause === 'undefined' || options.cause instanceof Error)) {
-      throw new RError({
-        name: 'INVALID_ARGS',
-        message: 'expected optional option cause to be either undefined of an instance of Error'
-      })
-    }
-
-    // set properties
-    this.name = options.name
-    this.message = options.message
-    this.cause = options.cause
 
     // capture stack (this property is supposed to be treated as private)
     this._err = new Error()

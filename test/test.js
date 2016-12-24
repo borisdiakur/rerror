@@ -144,6 +144,14 @@ describe('constructor parameter checks', function () {
     var e = new RError({name: 'FOO'})
     assert.ok(e instanceof RError, 'expected not to throw if optional options message and cause are undefined')
   })
+
+  it('should not throw if options is of type string but treat it as the option name', function () {
+    var e = new RError('FOO')
+    assert.ok(e instanceof RError, 'expected not to throw if optional options message and cause are undefined')
+    assert.equal(e.name, 'FOO')
+    assert.equal(e.message, '')
+    assert.equal(e.toString(), 'FOO')
+  })
 })
 
 describe('usage', function () {
@@ -169,8 +177,8 @@ describe('usage', function () {
     try {
       failFurther()
     } catch (e) {
-      var firstFailSpot = 'test/test.js:152:13'
-      var secondFailSpot = 'test/test.js:161:15'
+      var firstFailSpot = 'test/test.js:160:13'
+      var secondFailSpot = 'test/test.js:169:15'
       assert.equal(e.why, 'FOO: Something went wrong <- BAR')
       assert.ok(e.stack.split('\n')[1].indexOf(secondFailSpot) !== -1, 'expected stack to point to the right spot')
       assert.ok(e.cause.stack.split('\n')[1].indexOf(firstFailSpot) !== -1, 'expected cause stack to point to the right spot')
@@ -189,6 +197,7 @@ describe('usage', function () {
       assert.ok(e.hasCause('FOO') === true)
       assert.ok(e.hasCause('BAR') === true)
       assert.ok(e.hasCause('QUX') === false)
+      assert.equal(e.toString(), 'FOO: Something went wrong')
     }
   })
 })

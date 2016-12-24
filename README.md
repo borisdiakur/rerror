@@ -105,7 +105,7 @@ Creates a rich error object
 | --- | --- | --- |
 | options | <code>Object</code> | Required, must consists of the following properties:<br> - {String} name<br> - {String} [message]<br> - {Error} [cause] |
 
-**Example**  
+**Example with cause**  
 ```js
 .catch(err => {
   throw new RError({
@@ -114,6 +114,11 @@ Creates a rich error object
      cause: err
   })
 })
+```
+
+**Example of usage as a drop-in replacement**  
+```js
+throw new RError('BAR')
 ```
 
 ### Methods
