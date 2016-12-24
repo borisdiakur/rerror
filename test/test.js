@@ -187,9 +187,9 @@ describe('usage', function () {
     try {
       failEvenFurther()
     } catch (e) {
-      var firstFailSpot = 'test/test.js:152:13'
-      var secondFailSpot = 'test/test.js:159:15'
-      var thirdFailSpot = 'test/test.js:171:15'
+      var firstFailSpot = 'test/test.js:160:13'
+      var secondFailSpot = 'test/test.js:167:15'
+      var thirdFailSpot = 'test/test.js:179:15'
       assert.equal(e.why, 'FOO: Something went wrong <- BAR: Something else went wrong <- Error')
       assert.ok(e.stack.split('\n')[1].indexOf(thirdFailSpot) !== -1, 'expected stack to point to the right spot')
       assert.ok(e.cause.stack.split('\n')[1].indexOf(secondFailSpot) !== -1, 'expected stack to point to the right spot')
