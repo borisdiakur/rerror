@@ -115,7 +115,7 @@ Creates a rich error object
 
 | Param | Type | Description |
 | --- | --- | --- |
-| options | `Object` | Required, must consists of the following properties:<br> - {String} name<br> - {String} [message]<br> - {Error} [cause] |
+| options / name | `object` or `string` | Required, if object, it must consists of the following properties:<br> - {String} name<br> - {String} [message]<br> - {Error} [cause] |
 
 **Example with cause**  
 ```js
