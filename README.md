@@ -41,7 +41,7 @@ Once required or loaded in the browser, the `RError` constructor is available vi
 
 ```js
 require('rerror')
-throw new RError({name: 'FOO'})
+throw new RError('FOO')
 ```
 
 An example:
