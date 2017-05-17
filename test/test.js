@@ -136,7 +136,7 @@ describe('constructor parameter checks', function () {
     try {
       init()
     } catch (e) {
-      assert.equal(e.message, 'expected optional option cause to be either undefined of an instance of Error')
+      assert.equal(e.message, 'expected optional option cause to be either undefined or an instance of Error')
     }
   })
 
