@@ -70,7 +70,7 @@ if (typeof RError !== 'undefined') {
       if (!(typeof options.cause === 'undefined' || options.cause instanceof Error)) {
         throw new RError({
           name: 'INVALID_ARGS',
-          message: 'expected optional option cause to be either undefined of an instance of Error'
+          message: 'expected optional option cause to be either undefined or an instance of Error'
         })
       }
       // set properties
