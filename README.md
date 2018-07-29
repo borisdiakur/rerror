@@ -2,7 +2,6 @@
 
 [![Build Status](https://travis-ci.org/borisdiakur/rerror.svg?branch=master)](https://travis-ci.org/borisdiakur/rerror)
 [![Coverage Status](https://coveralls.io/repos/borisdiakur/rerror/badge.svg?branch=master)](https://coveralls.io/r/borisdiakur/rerror?branch=master)
-[![Dependency Status](https://gemnasium.com/borisdiakur/rerror.svg)](https://gemnasium.com/borisdiakur/rerror)
 [![npm version](https://badge.fury.io/js/rerror.svg)](http://badge.fury.io/js/rerror)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 

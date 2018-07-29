@@ -11,7 +11,7 @@
     "coveralls": "rm -rf coverage && istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "repository": "borisdiakur/rerror",
-  "keywords": "error, rich, exception, verror, cause",
+  "keywords": ["error", "rich", "exception", "verror", "cause"],
   "author": "Boris Diakur <contact@borisdiakur.com> (https://github.com/borisdiakur)",
   "license": "MIT",
   "dependencies": {},
