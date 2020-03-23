@@ -81,7 +81,7 @@ describe('constructor parameter checks', function () {
   })
 
   it('should throw if required option name of type string is missing', function () {
-    function init () { RError({name: 123}) }
+    function init () { RError({ name: 123 }) }
     assert.throws(init, Error)
     try {
       init()
@@ -91,7 +91,7 @@ describe('constructor parameter checks', function () {
   })
 
   it('should throw if required option name of type string is an empty string', function () {
-    function init () { RError({name: ''}) }
+    function init () { RError({ name: '' }) }
     assert.throws(init, Error)
     try {
       init()
@@ -101,7 +101,7 @@ describe('constructor parameter checks', function () {
   })
 
   it('should throw if required option name of type string consists only of whitespace', function () {
-    function init () { RError({name: ' \n '}) }
+    function init () { RError({ name: ' \n ' }) }
     assert.throws(init, Error)
     try {
       init()
@@ -111,7 +111,7 @@ describe('constructor parameter checks', function () {
   })
 
   it('should throw if optional option message of type string is defined but not of type string', function () {
-    function init () { RError({name: 'FOO', message: null}) }
+    function init () { RError({ name: 'FOO', message: null }) }
     assert.throws(init, Error)
     try {
       init()
@@ -121,7 +121,7 @@ describe('constructor parameter checks', function () {
   })
 
   it('should throw if optional option message of type string consists only of whitespace', function () {
-    function init () { RError({name: 'FOO', message: ' \n '}) }
+    function init () { RError({ name: 'FOO', message: ' \n ' }) }
     assert.throws(init, Error)
     try {
       init()
@@ -131,7 +131,7 @@ describe('constructor parameter checks', function () {
   })
 
   it('should throw if optional option cause is defined but not an instance of Error', function () {
-    function init () { RError({name: 'FOO', cause: null}) }
+    function init () { RError({ name: 'FOO', cause: null }) }
     assert.throws(init, Error)
     try {
       init()
@@ -141,7 +141,7 @@ describe('constructor parameter checks', function () {
   })
 
   it('should not throw if optional options message and cause are undefined', function () {
-    var e = new RError({name: 'FOO'})
+    var e = new RError({ name: 'FOO' })
     assert.ok(e instanceof RError, 'expected not to throw if optional options message and cause are undefined')
   })
 

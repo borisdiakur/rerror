@@ -5,23 +5,14 @@
 [![npm version](https://badge.fury.io/js/rerror.svg)](http://badge.fury.io/js/rerror)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
-The utility module rerror provides the `RError` constructor, which you can use instead of `Error`. It allows throwing and handling “rich errors” in Node.js and the browser.
-The main strength of a “rich error” is its ability to provide deeply nested however simply consumable information about the cause of failure without significant impact on performance.
-
-__Try it in your browser__: https://runkit.com/npm/rerror
+Use `RError` instead of `Error` in Node.js and the browser.
+It provides nested information about the cause of failure
+without significant impact on performance.
 
 ## Installation
 
-Node.js:
-
 ```shell
 $ npm install --save rerror
-```
-
-In the browser:
-
-```html
-<script type="text/javascript" src="rerror.js"></script>
 ```
 
 ![IE](https://badges.herokuapp.com/browsers?iexplore=-7,!8,9,10,11,edge)
@@ -36,7 +27,7 @@ In the browser:
 
 ## Usage
 
-Once required or loaded in the browser, the `RError` constructor is available via the global scope, ([`global`](https://nodejs.org/api/globals.html#globals_global) in Node.js respectively [`window`](https://developer.mozilla.org/en-US/docs/Web/API/Window) in the browser), just like `Error`.
+Once required, the `RError` constructor is available via the global scope, ([`global`](https://nodejs.org/api/globals.html#globals_global) in Node.js or [`window`](https://developer.mozilla.org/en-US/docs/Web/API/Window) in the browser), just like `Error`.
 
 ```js
 require('rerror')
@@ -78,8 +69,8 @@ The output looks something like this:
 ```
 FOO: Something went wrong. <- BAR: I messed up.
 Error
-    at failFurther (/Users/boris/Workspace/playground/es5/index.js:98:11)
-    at Object.<anonymous> (/Users/boris/Workspace/playground/es5/index.js:107:3)
+    at failFurther (<current_working_dir>/index.js:98:11)
+    at Object.<anonymous> (<current_working_dir>/index.js:107:3)
     at Module._compile (module.js:556:32)
     at Object.Module._extensions..js (module.js:565:10)
     at Module.load (module.js:473:32)
@@ -88,9 +79,9 @@ Error
     at Module.runMain (module.js:590:10)
     at run (bootstrap_node.js:394:7)
 <- Error
-    at fail (/Users/boris/Workspace/playground/es5/index.js:88:9)
-    at failFurther (/Users/boris/Workspace/playground/es5/index.js:96:5)
-    at Object.<anonymous> (/Users/boris/Workspace/playground/es5/index.js:107:3)
+    at fail (<current_working_dir>/index.js:88:9)
+    at failFurther (<current_working_dir>/index.js:96:5)
+    at Object.<anonymous> (<current_working_dir>/index.js:107:3)
     at Module._compile (module.js:556:32)
     at Object.Module._extensions..js (module.js:565:10)
     at Module.load (module.js:473:32)
@@ -102,23 +93,19 @@ Error
 ## API
 
 ### rerror.RError ⇐ `Error`
-**Kind**: static class
+**Kind**: static class  
 **Extends:** `Error`
 
 #### new RError(options)
-Creates a rich error object
-
-**Throws**:
-
-- `RError` Throws a rich error with name INVALID_ARGS, if invalid arguments are provided
+Instanciates a RError instance.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| options / name | `object` or `string` | Required, if object, it must consists of the following properties:<br> - {String} name<br> - {String} [message]<br> - {Error} [cause] |
+| options / name | `object` or `string` | Required; if object, it must consists of the following properties:<br> - `{String} name`<br> - `{String} [message]`<br> - `{Error} [cause]` |
 
 **Example with cause**  
 ```js
-.catch(err => {
+Promise.reject(new Error('fail')).catch(err => {
   throw new RError({
      name: 'BAR',
      message: 'I messed up',
