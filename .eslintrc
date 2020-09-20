@@ -1,1 +1,22 @@
-{"extends": ["standard"]}
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
+  ],
+  "env": {
+    "browser": false,
+    "es6": true,
+    "node": true,
+    "mocha": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
+  "rules": {
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/ban-ts-ignore": 0,
+    "prettier/prettier": 1
+  }
+}

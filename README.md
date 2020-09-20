@@ -3,7 +3,6 @@
 [![Build Status](https://travis-ci.org/borisdiakur/rerror.svg?branch=master)](https://travis-ci.org/borisdiakur/rerror)
 [![Coverage Status](https://coveralls.io/repos/borisdiakur/rerror/badge.svg?branch=master)](https://coveralls.io/r/borisdiakur/rerror?branch=master)
 [![npm version](https://badge.fury.io/js/rerror.svg)](http://badge.fury.io/js/rerror)
-[![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 Use `RError` instead of `Error` in Node.js and the browser.
 It provides nested information about the cause of failure
@@ -15,26 +14,31 @@ without significant impact on performance.
 $ npm install --save rerror
 ```
 
-![IE](https://badges.herokuapp.com/browsers?iexplore=-7,!8,9,10,11,edge)
-![Firefox](https://badges.herokuapp.com/browsers?firefox=4.0)
-![Google Chrome](https://badges.herokuapp.com/browsers?googlechrome=5)
-![Safari](https://badges.herokuapp.com/browsers?safari=5.1)
-![Opera](https://badges.herokuapp.com/browsers?opera=11.60)
-
-![Android](https://badges.herokuapp.com/browsers?android=yes)
-![iPhone](https://badges.herokuapp.com/browsers?iphone=yes)
-![iPad](https://badges.herokuapp.com/browsers?ipad=yes)
+```shell
+$ yarn add rerror
+```
 
 ## Usage
 
-Once required, the `RError` constructor is available via the global scope, ([`global`](https://nodejs.org/api/globals.html#globals_global) in Node.js or [`window`](https://developer.mozilla.org/en-US/docs/Web/API/Window) in the browser), just like `Error`.
+rerror is available in multiple module formats, so that you can import or require it or add it as a script to your html. Here are a few examples:
 
 ```js
-require('rerror')
-throw new RError('FOO')
+import RError from 'rerror'
+throw new RError('(×﹏×)')
 ```
 
-An example:
+```js
+const RError = require('rerror')
+throw new RError('ヽ(`⌒´メ)ノ')
+```
+
+```html
+<script src="https://unpkg.com/rerror/dist/index.iife.js"></script>
+<!-- RError is now available in the global scope -->
+<script>throw new RError('ヾ( ￣O￣)ツ')</script>
+```
+
+Here is an example illustrating how you can use rerror to pass along the information about the cause of failure:
 
 ```js
 function fail() {
@@ -42,6 +46,8 @@ function fail() {
     name: 'BAR',
     message: 'I messed up.'
   })
+  // Note that you could throw an Error instance here as well,
+  // or have something else throw for you, e.g. JSON.parse('(⇀‸↼‶)')
 }
 
 function failFurther() {
@@ -71,37 +77,26 @@ FOO: Something went wrong. <- BAR: I messed up.
 Error
     at failFurther (<current_working_dir>/index.js:98:11)
     at Object.<anonymous> (<current_working_dir>/index.js:107:3)
-    at Module._compile (module.js:556:32)
-    at Object.Module._extensions..js (module.js:565:10)
-    at Module.load (module.js:473:32)
-    at tryModuleLoad (module.js:432:12)
-    at Function.Module._load (module.js:424:3)
-    at Module.runMain (module.js:590:10)
-    at run (bootstrap_node.js:394:7)
+    ...
 <- Error
     at fail (<current_working_dir>/index.js:88:9)
     at failFurther (<current_working_dir>/index.js:96:5)
     at Object.<anonymous> (<current_working_dir>/index.js:107:3)
-    at Module._compile (module.js:556:32)
-    at Object.Module._extensions..js (module.js:565:10)
-    at Module.load (module.js:473:32)
-    at tryModuleLoad (module.js:432:12)
-    at Function.Module._load (module.js:424:3)
-    at Module.runMain (module.js:590:10)
+    ...
 ```
 
 ## API
 
-### rerror.RError ⇐ `Error`
-**Kind**: static class  
-**Extends:** `Error`
+rerror includes a typescript declaration (.d.ts) file, so your editor will probably give you some good hints on how to use it.
+
+### RError
 
 #### new RError(options)
 Instanciates a RError instance.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| options / name | `object` or `string` | Required; if object, it must consists of the following properties:<br> - `{String} name`<br> - `{String} [message]`<br> - `{Error} [cause]` |
+| options / name | `object` or `string` | Required; if object, it must consist of the following properties:<br> - `{String} name`<br> - `{String} [message]`<br> - `{RError`&#124;`Error} [cause]` |
 
 **Example with cause**  
 ```js
@@ -124,7 +119,7 @@ throw new RError('BAR')
 #### hasCause(name) ⇒ `boolean`
 Checks if a certain cause is in the cause chain of the error.
 
-**Kind**: instance method of `[RError](#rerror.RError)`
+**Kind**: instance method of `[RError](#RError)`
 **Access:** public
 
 | Param | Type | Description |
@@ -136,13 +131,31 @@ The value returned by the toJSON method will be used for serialization when usin
 
 **Returns:** `{ name: string, message: string, why: string, stacks: string }`
 
+#### toString() ⇒ `String`
+Returns a string representing the specified RError object.
+
 ### Properties
 
-#### why : `string`
-Getter returning a human readable cause chain, e.g. FOO: I failed <- BAR: I messed up
+#### name: `string`
+The name property represents a name for the type of error.
+
+#### message: `string`
+The message property is a human-readable description of the error.
+
+#### [cause] : `RError | Error`
+The cause error.
+
+#### chain : `(RError | Error)[]`
+The cause chain of the error.
+
+#### stack : `string`
+Getter returning the stack of the top most error in the chain.
 
 #### stacks : `string`
-Getter returning a stack of stacks using the cause chain
+Getter returning a stack of stacks using the cause chain.
+
+#### why : `string`
+Getter returning a human readable cause chain, e.g. FOO: I failed <- BAR: I messed up.
 
 ___
 
