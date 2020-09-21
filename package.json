@@ -1,6 +1,6 @@
 {
   "name": "rerror",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "rich error",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
