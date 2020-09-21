@@ -119,9 +119,6 @@ throw new RError('BAR')
 #### hasCause(name) ⇒ `boolean`
 Checks if a certain cause is in the cause chain of the error.
 
-**Kind**: instance method of `[RError](#RError)`
-**Access:** public
-
 | Param | Type | Description |
 | --- | --- | --- |
 | name | `string` | The cause name to be searched for in the cause chain |
