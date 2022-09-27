@@ -13,5 +13,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
+      - run: npm config set proxy null && npm config set https-proxy null && npm config set registry http://registry.npmjs.org/
       - run: npm ci
       - run: npm test
